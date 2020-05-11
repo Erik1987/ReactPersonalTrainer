@@ -37,9 +37,13 @@ export default function Trainings() {
         fetch('https://customerrest.herokuapp.com/gettrainings', 
         )
         .then(response => response.json())
-        .then(data => setTrainings(data))
+        //console.log(trainings)
+        .then(data => {console.log(data). setTrainings(data)})
+        
         .catch(err => console.error(err))
-       console.log(trainings)
+          
+        
+       
       }
 
       const updateTraining = (link, training) => {
