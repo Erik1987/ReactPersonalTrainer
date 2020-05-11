@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import Carlist from './components/Carlist'
+import Customerlist from './components/Customerlist'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -29,11 +29,11 @@ function App() {
           <Link to="/">Customers</Link>{' '}
           <Link to="/trainings/">Trainings</Link>
         
-          <Route exact path="/" component={Carlist}/>
+          <Route exact path="/" component={Customerlist}/>
           <Route path="/trainings" component={Trainings}/>
         </div>
       </Router> 
-      <Carlist />
+      <Customerlist />
     </div>
   );
 }

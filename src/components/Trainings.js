@@ -27,7 +27,7 @@ export default function Trainings() {
         )  
         .then(_ => getTrainings())
         .then(_ => {
-          setMsg('New customer added');
+          setMsg('New training added');
           setOpen(true);
         })
         .catch(err => console.error(err))  

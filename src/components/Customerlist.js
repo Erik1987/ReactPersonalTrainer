@@ -5,17 +5,17 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Addcar from './Addcar';
 import Editcar from './Editcar';
-import Addtraining from './Addtraining';
 
-export default function Carlist() {
+
+export default function Customerlist() {
   const [cars, setCars] = useState([]);
-  const [trainings, setTrainings] = useState([]);
+ // const [trainings, setTrainings] = useState([]);
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
     getCars();
-    getTrainings();
+    //getTrainings();
   }, [])
 
   const getCars = () => {
@@ -25,13 +25,13 @@ export default function Carlist() {
     
     .catch(err => console.error(err))    
   }
-  const getTrainings = () => {
+  /*const getTrainings = () => {
     fetch('https://customerrest.herokuapp.com/gettrainings')
     .then(response => response.json())
     .then(data => setTrainings(data[0]))
     .catch(err => console.error(err))
    
-  }
+  } */
   const deleteCar = (link) => {
     if (window.confirm('Are you sure?')) {
       fetch(link, {method: 'DELETE'})
@@ -62,7 +62,7 @@ export default function Carlist() {
     .catch(err => console.error(err)) 
     console.log(car); 
   }
-  const addTraining = (link, car) => {
+ /* const addTraining = (link, car) => {
     fetch('"https://customerrest.herokuapp.com/api/customers',
       {
         method: 'POST',
@@ -78,7 +78,7 @@ export default function Carlist() {
       setOpen(true);
     })
     .catch(err => console.error(err))  
-  }
+  }*/
 
   const updateCar = (link, car) => {
     fetch(link, {
@@ -144,7 +144,6 @@ export default function Carlist() {
   return(
     <div>
       <Addcar addCar={addCar}/>
-      <Addtraining addTraining={addTraining}/>
       <ReactTable filterable={true} defaultPageSize={10} 
         data={cars} columns={columns} />
       <Snackbar open={open} autoHideDuration={3000} 
