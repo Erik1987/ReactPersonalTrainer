@@ -22,8 +22,8 @@ export default function Carlist() {
     fetch('https://customerrest.herokuapp.com/api/customers')
     .then(response => response.json())
     .then(data => setCars(data.content))
-    .catch(err => console.error(err))
     
+    .catch(err => console.error(err))    
   }
   const getTrainings = () => {
     fetch('https://customerrest.herokuapp.com/gettrainings')

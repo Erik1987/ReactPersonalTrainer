@@ -6,16 +6,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function Addtraining(props) {
+export default function Edittraining(props) {
   const [open, setOpen] = useState(false);
   const [training, setTraining] = useState({date: '', duration: '', activity: '', customer: ''});
-
+ 
   const handleClickOpen = () => {
+    console.log(props.training);
+    setTraining({date: props.training.date, duration: props.training.duration, activity: props.training.activity,
+            customer: props.training.customer});
     setOpen(true);
   }
 
   const handleClose = () => {
-    props.addTraining(training);
+    props.updateCar(props.training.links[2].href, training);
     setOpen(false);
   }
 
@@ -29,13 +32,13 @@ export default function Addtraining(props) {
 
   return(
     <div>
-      <Button style={{margin: 10}} variant="outlined" color="primary" onClick={handleClickOpen}>
-        Add Training
+      <Button size="small" color="primary" onClick={handleClickOpen}>
+        Edit
       </Button>
       <Dialog open={open} disableBackdropClick={true} disableEscapeKeyDown={true} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">New Training</DialogTitle>
+        <DialogTitle id="form-dialog-title">Edit existing training</DialogTitle>
         <DialogContent>
-          <TextField
+        <TextField
             autoFocus
             margin="dense"
             id="date"
@@ -72,7 +75,6 @@ export default function Addtraining(props) {
             label="Customer"
             fullWidth
           />
-          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel} color="primary">
