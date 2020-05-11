@@ -28,9 +28,9 @@ export default function Carlist() {
   const getTrainings = () => {
     fetch('https://customerrest.herokuapp.com/gettrainings')
     .then(response => response.json())
-    .then(data => setTrainings(data.content))
+    .then(data => setTrainings(data[0]))
     .catch(err => console.error(err))
-    
+   
   }
   const deleteCar = (link) => {
     if (window.confirm('Are you sure?')) {
