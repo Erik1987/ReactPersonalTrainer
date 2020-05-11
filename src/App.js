@@ -4,7 +4,7 @@ import Carlist from './components/Carlist'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import Trainings from './components/Trainings'
 //Router imports
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -19,7 +19,12 @@ function App() {
            Personal Trainer
           </Typography>
      
-          <Router>
+                 
+
+        </Toolbar>
+        
+      </AppBar>
+      <Router>
        <div>
           <Link to="/">Customers</Link>{' '}
           <Link to="/trainings/">Trainings</Link>
@@ -27,10 +32,7 @@ function App() {
           <Route exact path="/" component={Carlist}/>
           <Route path="/trainings" component={Trainings}/>
         </div>
-      </Router>        
-
-        </Toolbar>
-      </AppBar>
+      </Router> 
       <Carlist />
     </div>
   );

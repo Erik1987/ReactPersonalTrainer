@@ -9,11 +9,13 @@ import Addtraining from './Addtraining';
 
 export default function Carlist() {
   const [cars, setCars] = useState([]);
+  const [trainings, setTrainings] = useState([]);
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
     getCars();
+    getTrainings();
   }, [])
 
   const getCars = () => {
@@ -23,7 +25,13 @@ export default function Carlist() {
     .catch(err => console.error(err))
     
   }
-
+  const getTrainings = () => {
+    fetch('https://customerrest.herokuapp.com/gettrainings')
+    .then(response => response.json())
+    .then(data => setTrainings(data.content))
+    .catch(err => console.error(err))
+    
+  }
   const deleteCar = (link) => {
     if (window.confirm('Are you sure?')) {
       fetch(link, {method: 'DELETE'})
@@ -37,7 +45,7 @@ export default function Carlist() {
   }
 
   const addCar = (car) => {
-    fetch('"https://customerrest.herokuapp.com/api/customers',
+    fetch('https://customerrest.herokuapp.com/api/customers',
       {
         method: 'POST',
         headers: {
@@ -51,9 +59,10 @@ export default function Carlist() {
       setMsg('New customer added');
       setOpen(true);
     })
-    .catch(err => console.error(err))  
+    .catch(err => console.error(err)) 
+    console.log(car); 
   }
-  const addTraining = (car) => {
+  const addTraining = (link, car) => {
     fetch('"https://customerrest.herokuapp.com/api/customers',
       {
         method: 'POST',
