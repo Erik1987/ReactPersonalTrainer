@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function Addtraining(props) {
   const [open, setOpen] = useState(false);
-  const [training, setTraining] = useState({date: '', duration: '', activity: '', customer: ''});
+  const [training, setTraining] = useState({date: '', duration: '', activity: '', customer: 'https://localhost:8080/api/customers/'+''});
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,7 +42,7 @@ export default function Addtraining(props) {
             name="date"
             value={training.date}
             onChange={inputChanged}
-            label="Date"
+            label="Date (YYYY-MM-DD)"
             fullWidth
           />
           <TextField
@@ -69,7 +69,7 @@ export default function Addtraining(props) {
             name="customer"
             value={training.customer}
             onChange={inputChanged}
-            label="Customer"
+            label="Customer (.../ID)"
             fullWidth
           />
           

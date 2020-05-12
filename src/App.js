@@ -18,9 +18,6 @@ function App() {
           <Typography variant="h6">
            Personal Trainer
           </Typography>
-     
-                 
-
         </Toolbar>
         
       </AppBar>
@@ -33,7 +30,7 @@ function App() {
           <Route path="/trainings" component={Trainings}/>
         </div>
       </Router> 
-      <Customerlist />
+      
     </div>
   );
 }

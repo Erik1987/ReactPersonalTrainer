@@ -4,6 +4,7 @@ import 'react-table-v6/react-table.css';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Addcar from './Addcar';
+import Addtraining from './Addtraining';
 import Editcar from './Editcar';
 
 
@@ -12,10 +13,10 @@ export default function Customerlist() {
  // const [trainings, setTrainings] = useState([]);
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState('');
-
+  const [trainings, setTrainings] = useState([]);
   useEffect(() => {
     getCars();
-    //getTrainings();
+    getTrainings();
   }, [])
 
   const getCars = () => {
@@ -43,7 +44,33 @@ export default function Customerlist() {
       .catch(err => console.error(err))
     }
   }
-
+  const addTraining = (training) => {
+    fetch('https://customerrest.herokuapp.com/api/trainings',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(training)
+      }
+    )  
+    .then(_ => getTrainings())
+    .then(_ => {
+     
+      console.log(training);
+      setMsg('New training added');
+      setOpen(true);
+    })
+    .catch(err => console.error(err)) 
+    
+  }
+  const getTrainings = () => {
+    fetch('https://customerrest.herokuapp.com/gettrainings')
+    .then(response => response.json())
+    .then(data => setTrainings(data))
+    .catch(err => console.error(err))               
+  }
+  
   const addCar = (car) => {
     fetch('https://customerrest.herokuapp.com/api/customers',
       {
@@ -93,7 +120,8 @@ export default function Customerlist() {
       setMsg('Customer updated');
       setOpen(true);
     })
-    .catch(err => console.error(err))  
+    .catch(err => console.error(err))
+     
   }
 
   const handleClose = () => {
@@ -129,6 +157,7 @@ export default function Customerlist() {
       Header: 'Phone',
       accessor: 'phone'
     },
+   
     {
       Cell: row => (<Editcar car={row.original} updateCar={updateCar} />)
     },
@@ -144,6 +173,7 @@ export default function Customerlist() {
   return(
     <div>
       <Addcar addCar={addCar}/>
+      <Addtraining addTraining={addTraining}/>
       <ReactTable filterable={true} defaultPageSize={10} 
         data={cars} columns={columns} />
       <Snackbar open={open} autoHideDuration={3000} 
